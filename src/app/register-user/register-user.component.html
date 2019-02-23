@@ -1,0 +1,15 @@
+<label >Correo</label>
+<input [(ngModel)]="email" type="email" />
+<br>
+<label >Contraseña</label>
+<input [(ngModel)]="password" type="password" />
+<br>
+<label >Usuario</label>
+<input [(ngModel)]="username" type="text" />
+<br>
+<label >Nombre completo</label>
+<input [(ngModel)]="name" type="text" />
+<br>
+
+<button (click)="registerWithEmail()">Registrar</button>
+<button (click)="loginWithEmail()">Login</button>
