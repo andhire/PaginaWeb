@@ -71,4 +71,11 @@ export class RegisterUserComponent implements OnInit {
       });
   }
 
+  loginWithFb(){
+    this.authenticationService.registerWithFb();
+  }
+  loginWithGoogle(){
+    this.authenticationService.registerWithGoogle();
+  }
+
 }
