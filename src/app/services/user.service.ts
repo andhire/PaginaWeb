@@ -11,6 +11,10 @@ export class UserService {
   
 
   createUser(user:User){
-    return this.angularFireDatabase.object('/users/').set(user);
+    return this.angularFireDatabase.object('/users/'+user.uid+"/").set(user);
+  }
+
+  createCV(cv:any){
+    return this.angularFireDatabase.object('/cv/'+cv.id+"/").set(cv);
   }
 }

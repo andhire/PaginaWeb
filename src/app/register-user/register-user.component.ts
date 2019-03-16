@@ -63,8 +63,8 @@ export class RegisterUserComponent implements OnInit {
   loginWithEmail(){
     this.authenticationService.loginWithMail(this.email,this.password).then(
       (data)=>{
-        alert("Login correcto");
-        console.log(data);
+        
+        
       }).catch((error)=>{
         alert("Hubo un error");
         console.log(error);
@@ -72,10 +72,63 @@ export class RegisterUserComponent implements OnInit {
   }
 
   loginWithFb(){
-    this.authenticationService.registerWithFb();
+    this.authenticationService.registerWithFb().then(
+      (data)=>{
+
+        console.log(data)
+        if(data.additionalUserInfo.isNewUser){
+          const user ={
+            username:data.user.displayName,
+            email:data.user.email,
+            name:data.user.displayName,
+            uid:data.user.uid
+        
+          }
+          console.log("Aqui entro segun :v")
+          this.userService.createUser(user).then((data1)=>{
+            alert("Registro correcto");
+              console.log(data1);
+  
+              
+  
+  
+          }).catch((error)=>{
+              alert("Hubo un error,crear usuario");
+              console.log(error);
+          });
+        }else{
+          alert("Login Correcto")
+        }
+        
+      }).catch((error)=>{
+        alert("Hubo un error");
+        console.log(error);
+      });
   }
   loginWithGoogle(){
-    this.authenticationService.registerWithGoogle();
+    this.authenticationService.registerWithGoogle().then(
+      (data)=>{
+        const cv ={
+          idiomas: "Ingles",
+          porcentaje: 100,
+          x:1,
+          id:data.user.uid
+      
+        }
+        this.userService.createCV(cv).then(
+          (data)=>{
+            
+            
+          }).catch((error)=>{
+            
+          });
+      }).catch((error)=>{
+        alert("Hubo un error");
+        console.log(error);
+      });
+
+      
+
   }
 
 }
